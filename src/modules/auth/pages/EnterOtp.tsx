@@ -4,34 +4,64 @@ import { responsiveFontSize, responsiveWidth } from "react-native-responsive-dim
 import { NavigationProps } from '../../../utils/interfaces';
 import Buttons from '../../../components/Buttons';
 import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+interface EnterOtpProps {
+    navigation: any;
+    route: {
+      params: {
+        usernumber: string;
+      };
+    };
+  }
+
+const EnterOtp: React.FC<EnterOtpProps> = ({ navigation, route }) => {
+    const { usernumber } = route.params;
+    const [otp, setOtp] = useState('');
 
 
-const EnterNumber = ({ navigation }: NavigationProps) => {
+    const login = () => {
+        AsyncStorage.setItem('login', 'true')
+    }
+    const proceed =() => {
+        if(otp == '111111'){
+            navigation.navigate('registerUser', {usernumber: usernumber});
+        }
+        else{
+            login();
+        }
+    }
 
-    const [number, setNumber] = useState('');
     return (
         <View style={styles.mainWrapper}>
             <View>
                 <Image style={styles.maharajaIcon} source={require('../../../assets/Logo.png')} resizeMode='contain' />
             </View>
             <View style={styles.centerContainer}>
-                <Text style={styles.whiteText}>Enter your mobile number</Text>
+                <Text style={styles.whiteText}>Enter OTP (One Time Password)</Text>
                 <View style={styles.inputContainer}>
                     <Text style={styles.countryCode}>
                         +91
                     </Text>
                     <TextInput
                         style={styles.input}
+                        editable={false}
+                        value={usernumber}
+                    />
+                </View>
+                <View style={styles.otpinputContainer}>
+                    <TextInput
+                        style={styles.input}
                         editable={true}
-                        value={number}
+                        value={otp}
                         keyboardType='numeric'
-                        onChangeText={(text)=>setNumber(text)}
-                        maxLength={10}
+                        onChangeText={(text)=>setOtp(text)}
+                        maxLength={6}
                     />
                 </View>
                 <Buttons
-                    label={'Get OTP'}
-                    onPress={() => navigation.navigate('enterOtp', { usernumber: number })}
+                    label={'Proceed'}
+                    onPress={proceed}
                     disabled={false}
                     variant={'primary'}
                     width={100}
@@ -47,9 +77,6 @@ const styles = StyleSheet.create({
         padding: 25,
         backgroundColor: colors.primaryColor,
         alignItems: 'center',
-    },
-    fixceraIcon: {
-        height: 50,
     },
     maharajaIcon: {
         height: 100
@@ -72,8 +99,19 @@ const styles = StyleSheet.create({
         letterSpacing: 3
     },
     inputContainer: {
-        marginVertical: 20,
+        marginTop: 40,
+        marginBottom: 20,
         width: responsiveWidth(70),
+        backgroundColor: colors.lightGrey,
+        borderRadius: 5,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 15
+    },
+    otpinputContainer: {
+        marginBottom: 40,
+        width: responsiveWidth(35),
         backgroundColor: colors.lightGrey,
         borderRadius: 5,
         display: 'flex',
@@ -89,4 +127,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default EnterNumber;
+export default EnterOtp;
