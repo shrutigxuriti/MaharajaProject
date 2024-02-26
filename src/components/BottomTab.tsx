@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import BottomTabBar from './BottomTabBar';
 import HomeStack from '../modules/home/stack/HomeStack';
 import colors from '../../colors';
@@ -9,10 +9,13 @@ import { responsiveFontSize } from 'react-native-responsive-dimensions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import WishlistStack from '../modules/wishlist/stack/WishlistStack';
+import { useAuth } from './AuthContext';
+import LogoutConfirmationPopup from './LogoutConfirmationPopup';
 
 const BottomTab = () => {
     const Tab = createBottomTabNavigator();
     const [isLogoutPopupVisible, setLogoutPopupVisible] = useState(false);
+    const { logout } = useAuth();
 
     const showLogoutPopup = () => {
         setLogoutPopupVisible(true);
@@ -23,18 +26,17 @@ const BottomTab = () => {
     const hideLogoutPopup = () => {
         setLogoutPopupVisible(false);
         navigation.goBack();
-
     };
 
     const confirmLogout = () => {
         hideLogoutPopup();
+        logout();
     };
-
-
-
 
     return (
         <>
+              <LogoutConfirmationPopup isVisible={isLogoutPopupVisible} onConfirm={confirmLogout} onClose={hideLogoutPopup} />
+
             <Tab.Navigator
                 initialRouteName="HomeStack"
                 tabBar={props => <BottomTabBar {...props} />}
@@ -56,5 +58,5 @@ const BottomTab = () => {
         </>
     );
 };
-export default BottomTab;
 
+export default BottomTab;

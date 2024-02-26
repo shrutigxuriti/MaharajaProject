@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   focusedContainer: {
-    borderColor: colors.primaryColor,
+    borderColor: colors.lightGrey,
   },
   label: {
     fontSize: responsiveFontSize(1.7),
     fontWeight: 'bold',
-    color: colors.black,
+    color: colors.primaryColor,
     backgroundColor: colors.white,
     paddingHorizontal: 3,
   },
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     top: -8,
     left: 10,
     fontSize: responsiveFontSize(1.5),
-    color: colors.black,
+    color: colors.primaryColor,
   },
   input: {
     color: colors.black,

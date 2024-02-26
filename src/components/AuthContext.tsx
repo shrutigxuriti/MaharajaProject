@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 interface AuthContextProps {
   setIsUserAuthenticated: Dispatch<SetStateAction<boolean>>;
   isUserAuthenticated: boolean;
-  login: (user: any) => Promise<void>;
+  login: () => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -16,13 +16,21 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
-
-  const login = async (user: any) => {
+  const checkLoginStatus = async () => {
+    const loginStatus = await AsyncStorage.getItem('login');
+    setIsUserAuthenticated(loginStatus === 'true');
+  };
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
+  const login = async () => {
     setIsUserAuthenticated(true);
+
   };
 
   const logout = async () => {
     try {
+      await AsyncStorage.setItem('login', 'false')
       setIsUserAuthenticated(false);
     } catch (error) {
       console.error('Error while logging out:', error);

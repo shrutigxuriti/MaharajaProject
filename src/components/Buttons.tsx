@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
     },
     primaryButton: {
         backgroundColor: colors.secondaryColor,
-        borderRadius: 5
+        borderRadius: 5,
+        elevation: 5
     }
 });
 

@@ -4,21 +4,14 @@ import AuthNavigator from '../modules/auth/stack/AuthNavigator';
 import HomeStack from '../modules/home/stack/HomeStack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomTab from './BottomTab';
+import { useAuth } from './AuthContext';
 
 const AppNavigator = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const loginStatus = await AsyncStorage.getItem('login');
-      setIsLoggedIn(loginStatus === 'true');
-    };
-    checkLoginStatus();
-  }, []);
+  const { isUserAuthenticated } = useAuth();
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <BottomTab /> : <AuthNavigator />}
+      {isUserAuthenticated ? <BottomTab /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

@@ -6,6 +6,7 @@ import Buttons from '../../../components/Buttons';
 import { useState } from 'react';
 import InputField from '../../../components/InputField';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from '../../../components/AuthContext';
 
 interface RegisterUserProps {
     navigation: any;
@@ -24,8 +25,12 @@ const RegisterUser: React.FC<RegisterUserProps> = ({ navigation, route }) => {
     const [emailAddress, setEmailAddress] = useState('');
     const [language, setLanguage] = useState('');
 
-    const login = () => {
-        AsyncStorage.setItem('login', 'true')
+    const { login } = useAuth();
+
+
+    const loginwithotp = async () => {
+        await AsyncStorage.setItem('login', 'true');
+        login();
     }
     return (
         <View style={styles.mainWrapper}>
@@ -58,7 +63,7 @@ const RegisterUser: React.FC<RegisterUserProps> = ({ navigation, route }) => {
                 />
             </View>
             <Buttons 
-            label={'Sign Up'} onPress={login} disabled={false} variant={'primary'} width={100} />
+            label={'Sign Up'} onPress={loginwithotp} disabled={false} variant={'primary'} width={100} />
         </View>
     );
 };

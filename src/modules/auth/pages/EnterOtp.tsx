@@ -5,7 +5,7 @@ import { NavigationProps } from '../../../utils/interfaces';
 import Buttons from '../../../components/Buttons';
 import { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { useAuth } from '../../../components/AuthContext'; 
 interface EnterOtpProps {
     navigation: any;
     route: {
@@ -18,17 +18,19 @@ interface EnterOtpProps {
 const EnterOtp: React.FC<EnterOtpProps> = ({ navigation, route }) => {
     const { usernumber } = route.params;
     const [otp, setOtp] = useState('');
+    const { login } = useAuth();
 
 
-    const login = () => {
-        AsyncStorage.setItem('login', 'true')
+    const loginwithotp = async () => {
+        await AsyncStorage.setItem('login', 'true');
+        login();
     }
     const proceed =() => {
         if(otp == '111111'){
             navigation.navigate('registerUser', {usernumber: usernumber});
         }
         else{
-            login();
+            loginwithotp();
         }
     }
 

@@ -9,7 +9,7 @@ import { NavigationProps } from '../../../utils/interfaces';
 const Wishlist = ({ navigation }: NavigationProps) => {
     return (
         <View style={styles.mainWrapper}>
-            
+            <Text style={styles.Heading}>Wishlist</Text>
         </View>
     );
 };
@@ -21,6 +21,11 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         alignItems: 'center',
     },
+    Heading: {
+        color: colors.black,
+        fontWeight: 'bold',
+        fontSize: responsiveFontSize(3)
+    }
 });
 
 export default Wishlist;
