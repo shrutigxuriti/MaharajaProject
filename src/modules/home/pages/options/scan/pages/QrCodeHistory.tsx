@@ -4,33 +4,33 @@ import colors from '../../../../../../../colors';
 import { NavigationProps } from '../../../../../../utils/interfaces';
 import { responsiveFontSize, responsiveWidth } from 'react-native-responsive-dimensions';
 
-const RewardHistory = ({ navigation }: NavigationProps) => {
+const QrCodeHistory = ({ navigation }: NavigationProps) => {
     const data = [
         {
             date: "16-01-2022",
-            desc: "Paytm Cash worth Rs. 120, RID23567",
-            status: "Active"
+            desc: "258185782968289",
+            status: "Success"
         },
         {
             date: "20-01-2022",
-            desc: "Paytm Cash worth Rs. 800, RID23597",
-            status: "Active"
-        },
-        {
-            date: "30-03-2022",
-            desc: "Paytm Cash worth Rs. 120, RID23787",
+            desc: "258185782968289",
             status: "Success"
         },
         {
             date: "30-03-2022",
-            desc: "Paytm Cash worth Rs. 120, RID23787",
-            status: "Credited"
+            desc: "258185782968289",
+            status: "Failure"
+        },
+        {
+            date: "30-03-2022",
+            desc: "258185782968289",
+            status: "Failure"
         },
     ];
 
     const renderListItem = ({ item }) => {
-        const statusColor = item.status === 'Active' ? colors.black : colors.lightGrey;
-        const statusBackgroundColor = item.status === 'Active' ? colors.secondaryColor : colors.lightLightGrey;
+        const statusColor = item.status === 'Success' ? colors.black : colors.lightGrey;
+        const statusBackgroundColor = item.status === 'Success' ? colors.secondaryColor : colors.lightLightGrey;
         return (
             <>
                 <View style={styles.item}>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     flatList: {
         width: '100%',
-        paddingTop: 25
+        paddingTop: 25,
     },
     flatListContent: {
         flexGrow: 1,
@@ -88,27 +88,31 @@ const styles = StyleSheet.create({
         gap: 10,
         borderBottomWidth: 0.5,
         borderColor: colors.lightGrey,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     date: {
         fontSize: responsiveFontSize(1.5),
         fontWeight: 'bold',
         marginBottom: 5,
+        // flex: 1
     },
     desc: {
         fontSize: responsiveFontSize(1.5),
         fontWeight: 'bold',
+        flex: 1,
+        textAlign: 'center'
     },
     status: {
-        fontSize: responsiveFontSize(1),
+        fontSize: responsiveFontSize(1.5),
         fontWeight: 'bold',
         backgroundColor: colors.lightLightGrey,
         padding: 5,
-        width: responsiveWidth(12),
+        width: responsiveWidth(15),
         alignItems: 'center',
         textAlign: 'center',
-        borderBottomRightRadius: 5
+        borderBottomRightRadius: 5,
     },
 });
 
-export default RewardHistory;
+export default QrCodeHistory;

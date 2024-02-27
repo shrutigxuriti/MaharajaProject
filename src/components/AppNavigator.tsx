@@ -5,6 +5,7 @@ import HomeStack from '../modules/home/stack/HomeStack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomTab from './BottomTab';
 import { useAuth } from './AuthContext';
+import DrawerNavigator from './DrawerNavigator';
 
 const AppNavigator = () => {
   const { isUserAuthenticated } = useAuth();
