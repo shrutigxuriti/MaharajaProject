@@ -11,7 +11,7 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-      {isUserAuthenticated ? <BottomTab /> : <AuthNavigator />}
+      {isUserAuthenticated ? <HomeStack /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

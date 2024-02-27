@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import colors from '../../../../../../../colors';
 import { NavigationProps } from '../../utils/interfaces';
-import { responsiveFontSize, responsiveHeight } from 'react-native-responsive-dimensions';
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import OptionButton from '../../../../../../components/OptionsButton';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -10,56 +10,26 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 const Redeem = ({ navigation }: NavigationProps) => {
     return (
         <View style={styles.mainWrapper}>
-            <Text style={styles.Heading}>Redeem Points</Text>
-            <View style={styles.pointsContainer}>
-                <View style={styles.topPointsContainer}>
-                    <MaterialIcons name={'money'} size={30} color={colors.secondaryColor} />
-                    <View style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        flex: 1
-                    }}>
-                        <Text style={{
-                            color: colors.black,
-                            fontWeight: 'bold'
-                        }}>Balance</Text>
-                        <Text style={{
-                            color: colors.black,
-                            fontSize: responsiveFontSize(2.5),
-                            fontWeight: 'bold',
-                        }}>3000</Text>
-                        <Text style={{
-                            color: colors.primaryColor,
-                            fontSize: responsiveFontSize(1),
-                        }}>*Minimum 3000 points are required to be redeemed.</Text>
-                    </View>
+            <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-between', marginBottom: 50}}>
+                <View style={styles.pointsContainer}>
+                    <Text style={styles.pointsHeading}>
+                        Current Point Balance
+                    </Text>
+                    <Text style={styles.point}>
+                        5,686
+                    </Text>
                 </View>
-                <View style={{ borderColor: colors.lightLightGrey, borderBottomWidth: 1 }}></View>
-                <View style={styles.bottomPointsContainer}>
-                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-                        <Text style={{
-                            color: colors.lightGrey,
-                            fontSize: responsiveFontSize(1.5)
-                        }}>Total Earned</Text>
-                        <Text style={{
-                            color: colors.black,
-                            fontSize: responsiveFontSize(1.5),
-                            fontWeight: 'bold'
-                        }}>10000</Text>
-                    </View>
-                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
-                        <Text style={{
-                            color: colors.lightGrey,
-                            fontSize: responsiveFontSize(1.5)
-                        }}>Total Redeemed</Text>
-                        <Text style={{
-                            color: colors.black,
-                            fontSize: responsiveFontSize(1.5),
-                            fontWeight: 'bold'
-                        }}>5000</Text>
-                    </View>
+                <View style={styles.pointsContainer}>
+                    <Text style={styles.pointsHeading}>
+                        Redeemable Point Balance
+                    </Text>
+                    <Text style={styles.point}>
+                        1,084
+                    </Text>
                 </View>
             </View>
+            
+            <Image style={{width: '100%', height: '30%', marginBottom: 50}} resizeMode='contain' source={require('../../../../../../assets/redeem.png')} />
 
             <View style={styles.options}>
                 <View style={styles.optionsRow}>
@@ -86,35 +56,8 @@ const styles = StyleSheet.create({
     mainWrapper: {
         flex: 1,
         padding: 25,
-        backgroundColor: colors.white,
+        backgroundColor: colors.primaryColor,
         alignItems: 'center',
-    },
-    Heading: {
-        color: colors.black,
-        fontSize: responsiveFontSize(2.5),
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    topPointsContainer: {
-        flexDirection: 'row',
-        gap: 15,
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    bottomPointsContainer: {
-        flexDirection: 'column',
-        gap: 5,
-        alignItems: 'center',
-        justifyContent: 'space-between'
-    },
-    pointsContainer: {
-        elevation: 10,
-        backgroundColor: colors.white,
-        padding: 15,
-        borderRadius: 10,
-        width: '100%',
-        gap: 10,
-        marginTop: 20
     },
     optionsRow: {
         display: 'flex',
@@ -140,6 +83,24 @@ const styles = StyleSheet.create({
     smallOptiontext: {
         color: colors.primaryColor,
         fontSize: responsiveFontSize(1.5),
+        fontWeight: 'bold'
+    },
+    pointsContainer: {
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: colors.white,
+        padding: 10,
+        width: responsiveWidth(35),
+        alignItems: 'center'
+    },
+    pointsHeading: {
+        fontSize: responsiveFontSize(1.7),
+        color: colors.white,
+        textAlign: 'center'
+    },
+    point: {
+        fontSize: responsiveFontSize(3.3),
+        color: colors.secondaryColor,
         fontWeight: 'bold'
     }
 });

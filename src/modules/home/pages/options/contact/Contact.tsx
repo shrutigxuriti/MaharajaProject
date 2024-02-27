@@ -3,58 +3,97 @@ import colors from '../../../../../../colors';
 import { NavigationProps } from '../../../../../utils/interfaces';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Contact = ({ navigation }: NavigationProps) => {
     return (
         <View style={styles.mainWrapper}>
-            <Text style={styles.heading}>Contact Us</Text>
-            <Image source={require('../../../../../assets/hello.png')} style={{width: '100%', marginVertical: 20}} resizeMode='contain'/>
-            <TouchableOpacity style={styles.row}>
-                <MaterialIcons name={'call'} size={20} color={colors.secondaryColor} />
-                <Text style={styles.text}>+91 9898989898</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.row}>
-                <FontAwesome name={'whatsapp'} size={20} color={colors.secondaryColor} />
-                <Text style={styles.text}>+91 9898989898</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.row}>
-                <MaterialIcons name={'email'} size={20} color={colors.secondaryColor} />
-                <Text style={styles.text}>tester@gmail.com</Text>
-            </TouchableOpacity>
-            <View style={{flexDirection: 'column', alignItems: 'center', marginTop: 20}}>
-                <MaterialIcons name={'location-on'} size={20} color={colors.secondaryColor} />
-                <Text style={[styles.text, {marginTop: 10}]}>3rd Floor, 68 4th cross, Bannerghatta Main Rd, opp. adigas, Panduranga Nagar, Bengaluru, Karnataka 560076</Text>
+            <View style={styles.subWrapper}>
+                <Text style={styles.heading}>Need Help?</Text>
+                <Text style={styles.text}>Fixcera Maharaja</Text>
+                <Text style={styles.text}>Contractor Loyalty Program</Text>
+                <Text style={styles.text}>C/O Evolve Brands Pvt. Ltd.</Text>
+                <Text style={styles.text}>Plot N. -249G</Text>
+                <Text style={styles.text}>AIHP Tower Wing - A</Text>
+                <Text style={styles.text}>Level-2, Udyog Vihar,</Text>
+                <Text style={styles.text}>Phase 4, Gurugram - 122015</Text>
+                <Text style={styles.text}>Haryana</Text>
+                <View style={styles.contactContainer}>
+                    <TouchableOpacity style={{ flexDirection: 'row', gap: 10 }}>
+                        <View style={styles.iconContainer}>
+                            <MaterialIcons name={'call'} size={15} color={colors.black} />
+                        </View>
+                        <Text style={styles.contactText}>0124-4830XXX</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flexDirection: 'row', gap: 10 }}>
+                        <View style={styles.iconContainer}>
+                            <MaterialIcons name={'email'} size={15} color={colors.black} />
+                        </View>
+                        <Text style={styles.contactText}>maharaja@fixcera.com</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.socialsContainer}>
+                    <TouchableOpacity style={styles.iconContainer}>
+                        <MaterialIcons name={'facebook'} size={15} color={colors.black} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconContainer}>
+                        <MaterialCommunityIcons name={'instagram'} size={15} color={colors.black} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconContainer}>
+                        <MaterialCommunityIcons name={'twitter'} size={15} color={colors.black} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.iconContainer}>
+                        <MaterialCommunityIcons name={'whatsapp'} size={15} color={colors.black} />
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </View >
     );
 };
 
 const styles = StyleSheet.create({
     mainWrapper: {
         flex: 1,
-        padding: 25,
-        backgroundColor: colors.white,
+        backgroundColor: colors.primaryColor,
         alignItems: 'center',
+    },
+    subWrapper: {
+        padding: 50,
+        flex: 1
     },
     heading: {
         fontSize: responsiveFontSize(3),
-        color: colors.black,
+        color: colors.white,
         fontWeight: 'bold',
         marginBottom: 20
     },
     text: {
-        color: colors.black,
-        fontSize: responsiveFontSize(1.7),
+        fontSize: responsiveFontSize(2),
+        color: colors.white,
         fontWeight: 'bold',
-        textAlign: 'center'
+        marginBottom: 2
     },
-    row: {
-        flexDirection: 'row',
+    iconContainer: {
+        height: 25,
+        width: 25,
+        backgroundColor: colors.secondaryColor,
         alignItems: 'center',
-        gap: 10,
-        width: '100%',
-        marginBottom: 10
+        justifyContent: 'center',
+        borderRadius: 100
+    },
+    contactContainer: {
+        marginVertical: 20,
+        gap: 20
+    },
+    contactText: {
+        fontSize: responsiveFontSize(2.1),
+        color: colors.white,
+        fontWeight: 'bold'
+    },
+    socialsContainer: {
+        marginTop: 100,
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 });
 

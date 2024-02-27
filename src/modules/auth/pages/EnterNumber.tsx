@@ -15,19 +15,21 @@ const EnterNumber = ({ navigation }: NavigationProps) => {
                 <Image style={styles.maharajaIcon} source={require('../../../assets/Logo.png')} resizeMode='contain' />
             </View>
             <View style={styles.centerContainer}>
-                <Text style={styles.whiteText}>Enter your mobile number</Text>
-                <View style={styles.inputContainer}>
-                    <Text style={styles.countryCode}>
-                        +91
-                    </Text>
-                    <TextInput
-                        style={styles.input}
-                        editable={true}
-                        value={number}
-                        keyboardType='numeric'
-                        onChangeText={(text)=>setNumber(text)}
-                        maxLength={10}
-                    />
+                <View style={{alignItems: 'center'}}>
+                    <Text style={styles.whiteText}>Enter your mobile number</Text>
+                    <View style={styles.inputContainer}>
+                        <Text style={styles.countryCode}>
+                            +91
+                        </Text>
+                        <TextInput
+                            style={styles.input}
+                            editable={true}
+                            value={number}
+                            keyboardType='numeric'
+                            onChangeText={(text) => setNumber(text)}
+                            maxLength={10}
+                        />
+                    </View>
                 </View>
                 <Buttons
                     label={'Get OTP'}
@@ -63,7 +65,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         height: '90%',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        paddingBottom: 100,
+        paddingTop: 150
     },
     input: {
         color: colors.white,

@@ -13,6 +13,7 @@ import WhatNew from '../pages/options/new/WhatNew';
 import Contact from '../pages/options/contact/Contact';
 import ProductsStack from '../pages/options/products/stack/ProductsStack';
 import Refer from '../pages/options/Refer/Refer';
+import ScanStack from '../pages/options/scan/stack/ScanStack';
 
 const HomeStack = () => {
     const Stack = createNativeStackNavigator();
@@ -28,7 +29,7 @@ const HomeStack = () => {
                 name="Home"
                 component={HomePage}
                 options={() => ({
-                    headerShown: true,
+                    headerShown: false,
                 })}
             />
             <Stack.Screen
@@ -90,6 +91,13 @@ const HomeStack = () => {
             <Stack.Screen
                 name="Refer & Earn"
                 component={Refer}
+                options={() => ({
+                    headerShown: true,
+                })}
+            />
+            <Stack.Screen
+                name="Scan QR Code"
+                component={ScanStack}
                 options={() => ({
                     headerShown: true,
                 })}

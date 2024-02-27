@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Text, ImageBackground } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Image } from 'react-native';
 import colors from '../../../../../../../colors';
 import { NavigationProps } from '../../../../../../utils/interfaces';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
+import ReusableCarousel from '../../../../../../components/ReusableCarousel';
 
 const Scheme = ({ navigation }: NavigationProps) => {
 
@@ -17,9 +18,15 @@ const Scheme = ({ navigation }: NavigationProps) => {
         },
     ];
 
+    const carouselData = [
+        { imageUrl: require('../../../../../../assets/carousel1.jpg') },
+        { imageUrl: require('../../../../../../assets/carousel2.jpg') },
+        { imageUrl: require('../../../../../../assets/carousel3.jpg') },
+    ];
+
     return (
         <View style={styles.mainWrapper}>
-            <Text style={styles.heading}>Schemes & Offers</Text>
+            {/* <Text style={styles.heading}>Schemes & Offers</Text>
             {data.map((item, index) => (
                 <View key={index} style={styles.offerContainer}>
                     <ImageBackground source={require('../../../../../../assets/bonusBackground.png')} resizeMode='contain' style={styles.imageBackground}>
@@ -29,7 +36,9 @@ const Scheme = ({ navigation }: NavigationProps) => {
                         </View>
                     </ImageBackground>
                 </View>
-            ))}
+            ))} */}
+            <ReusableCarousel data={carouselData} carouselHeight={400} />
+
         </View>
     );
 };
@@ -38,7 +47,7 @@ const styles = StyleSheet.create({
     mainWrapper: {
         flex: 1,
         padding: 10,
-        backgroundColor: colors.white,
+        backgroundColor: colors.primaryColor,
         alignItems: 'center',
     },
     heading: {

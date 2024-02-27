@@ -40,6 +40,7 @@ const EnterOtp: React.FC<EnterOtpProps> = ({ navigation, route }) => {
                 <Image style={styles.maharajaIcon} source={require('../../../assets/Logo.png')} resizeMode='contain' />
             </View>
             <View style={styles.centerContainer}>
+                <View style={{alignItems: 'center'}}>
                 <Text style={styles.whiteText}>Enter OTP (One Time Password)</Text>
                 <View style={styles.inputContainer}>
                     <Text style={styles.countryCode}>
@@ -60,6 +61,7 @@ const EnterOtp: React.FC<EnterOtpProps> = ({ navigation, route }) => {
                         onChangeText={(text)=>setOtp(text)}
                         maxLength={6}
                     />
+                </View>
                 </View>
                 <Buttons
                     label={'Proceed'}
@@ -92,7 +94,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         height: '90%',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        paddingTop: 150,
+        paddingBottom: 100
     },
     input: {
         color: colors.white,

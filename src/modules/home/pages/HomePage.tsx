@@ -10,45 +10,105 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import OptionButton from '../../../components/OptionsButton';
+import ReusableCarousel from '../../../components/ReusableCarousel';
 
 const HomePage = ({ navigation }: NavigationProps) => {
+    const carouselData = [
+        { imageUrl: require('../../../assets/carousel1.jpg') },
+        { imageUrl: require('../../../assets/carousel2.jpg') },
+        { imageUrl: require('../../../assets/carousel3.jpg') },
+    ];
     return (
         <View style={styles.mainWrapper}>
             <View style={styles.detailsContainer}>
-                <Image style={{height: 50, width: 50}} source={require('../../../assets/usericon.png')} />
-                <View style={{flexDirection: 'column', marginLeft: 10, gap: 2}}>
-                    <Text style={{color: colors.black, fontSize: responsiveFontSize(1.7), fontWeight: 'bold'}}>TEST USER</Text>
-                    <Text style={{color: colors.black, fontSize: responsiveFontSize(1.5)}}>USER ID 222</Text>
-                    <Text style={{color: colors.black, fontSize: responsiveFontSize(1.5)}}>9898989898</Text>
+                <Image style={{ height: 30, width: 30 }} source={require('../../../assets/usericon.png')} />
+                <View style={{ flexDirection: 'column', marginLeft: 10, gap: 2 }}>
+                    <Text style={{ color: colors.secondaryColor, fontSize: responsiveFontSize(1.5), fontWeight: 'bold' }}>TEST USER</Text>
+                    <Text style={{ color: colors.secondaryColor, fontSize: responsiveFontSize(1.3) }}>USER ID 222</Text>
                 </View>
             </View>
-            <View style={styles.cardContainer}>
-                <Text style={{ color: colors.white, fontWeight: 'bold', fontSize: responsiveFontSize(1.7) }}>Loyalty Points</Text>
-                <Text style={styles.points}>2000 Points</Text>
-                <View>
-                    <ProgressBar progress={0.8} color={colors.secondaryColor} />
-                    <Text style={{ color: colors.white, fontSize: responsiveFontSize(1.5), marginTop: 5 }}>Collect 3000 points to redeem</Text>
-                    <Text style={{ color: colors.secondaryColor, fontSize: responsiveFontSize(1.2) }}>Total Points Earned = 5000</Text>
+            <View style={styles.subWrapper}>
+                <View style={styles.cardContainer}>
+                    <View style={styles.card}>
+                        <Text style={styles.pointHeading}>Total Earned Points</Text>
+                        <Text style={styles.points}>6,770</Text>
+                    </View>
+                    <View style={styles.card}>
+                        <Text style={styles.pointHeading}>Redeemable Point Balance</Text>
+                        <Text style={styles.points}>1,084</Text>
+                    </View>
+                    <View style={styles.card}>
+                        <Text style={styles.pointHeading}>Current Point Balance</Text>
+                        <Text style={styles.points}>5,686</Text>
+                    </View>
                 </View>
             </View>
+            <View style={{ height: 25 }}></View>
+            <ReusableCarousel data={carouselData} carouselHeight={120} />
             <View style={styles.optionsContainer}>
-                <View style={styles.optionsRow}>
-                    <OptionButton iconName="gift-outline" text="Redeem" screenName="Redeem" iconType={'Ionicons'} />
-                    <OptionButton iconName="graph" text="Performance" screenName="Performance" iconType={'Octicons'} />
-                    <OptionButton iconName="message1" text="Contact" screenName="Contact Us" iconType={'AntDesign'} />
-                </View>
-                <View style={styles.optionsRow}>
-                <OptionButton iconName="local-offer" text="Schemes & Offers" screenName="Scheme" iconType={'MaterialIcons'} />
-                <OptionButton iconName="bulb-outline" text="What's New" screenName="What's New" iconType={'Ionicons'} />
+                <View style={styles.optionsColumn}>
+                    <TouchableOpacity
+                        style={[styles.option, { flex: 1 }]}
+                        onPress={() => navigation.navigate('Performance')}
+                    >
+                        <Octicons name={'graph'} size={30} color={colors.secondaryColor} />
+                        <Text style={styles.optionText}>Performance</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.option, { flex: 1 }]}
+                        onPress={() => navigation.navigate('Scheme')}
+                    >
+                        <MaterialIcons name={'local-offer'} size={30} color={colors.secondaryColor} />
+                        <Text style={styles.optionText}>Schemes / Offers</Text>
+                    </TouchableOpacity>
 
-                <OptionButton iconName="book-outline" text="Products" screenName="Products" iconType={'Ionicons'} />
+                </View>
+                <View style={styles.optionsColumn}>
+                    <TouchableOpacity
+                        style={[styles.option, { flex: 2 }]}
+                        onPress={() => navigation.navigate('Scan QR Code')}
+                    >
+                        <MaterialIcons name={'qr-code-2'} size={30} color={colors.secondaryColor} />
+                        <Text style={styles.optionText}>Scan Code</Text>
+                    </TouchableOpacity>
+
 
                 </View>
+                <View style={styles.optionsColumn}>
+                    <TouchableOpacity
+                        style={[styles.option, { flex: 2 }]}
+                        onPress={() => navigation.navigate('Redeem')}
+                    >
+                        <Ionicons name={'gift-outline'} size={30} color={colors.secondaryColor} />
+                        <Text style={styles.optionText}>Redeem Points</Text>
+                    </TouchableOpacity>
+
+                </View>
+
             </View>
-            <TouchableOpacity style={styles.referContainer} onPress={()=>navigation.navigate('Refer & Earn')}>
-                <Text style={{ color: colors.black, fontWeight: 'bold', fontSize: responsiveFontSize(2), flex: 1 }}>Refer and Earn</Text>
-                <Ionicons name={'arrow-forward'} size={24} color={colors.black} />
-            </TouchableOpacity>
+            <View style={styles.optionsRow}>
+                <TouchableOpacity
+                    style={[styles.option, { flex: 1 }]}
+                    onPress={() => navigation.navigate('Contact Us')}
+                >
+                    <AntDesign name={'message1'} size={30} color={colors.secondaryColor} />
+                    <Text style={styles.optionText}>Contact</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[styles.option, { flex: 1 }]}
+                    onPress={() => navigation.navigate("Products")}
+                >
+                    <Ionicons name={'book-outline'} size={30} color={colors.secondaryColor} />
+                    <Text style={styles.optionText}>Products</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[styles.option, { flex: 1}]}
+                    onPress={() => navigation.navigate("What's New")}
+                >
+                    <Ionicons name={'bulb-outline'} size={30} color={colors.secondaryColor} />
+                    <Text style={styles.optionText}>What's New</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -56,24 +116,30 @@ const HomePage = ({ navigation }: NavigationProps) => {
 const styles = StyleSheet.create({
     mainWrapper: {
         flex: 1,
-        padding: 25,
-        backgroundColor: colors.white,
+        paddingBottom: 25,
+        backgroundColor: colors.primaryColor,
     },
     cardContainer: {
-        backgroundColor: colors.primaryColor,
-        borderRadius: 10,
-        width: '100%',
-        height: '30%',
-        padding: 20,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-        elevation: 10
+        flexDirection: 'row',
+        gap: 1,
+        paddingTop: 1
+    },
+    card: {
+        paddingHorizontal: 20,
+        paddingVertical: 5,
+        alignItems: 'center',
+        flex: 1,
+        backgroundColor: colors.white
     },
     points: {
-        color: colors.secondaryColor,
-        fontSize: responsiveFontSize(4),
+        color: colors.primaryColor,
+        fontSize: responsiveFontSize(3),
         fontWeight: 'bold',
+    },
+    pointHeading: {
+        color: colors.primaryColor,
+        fontSize: responsiveFontSize(1.5),
+        textAlign: 'center'
     },
     referContainer: {
         backgroundColor: colors.secondaryColor,
@@ -84,16 +150,47 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 10
     },
-    optionsRow: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        gap: 20,
-        marginTop: 30,
-    },
     detailsContainer: {
         flexDirection: 'row',
-        marginBottom: 20
+        alignItems: 'center',
+        paddingHorizontal: 25,
+        paddingVertical: 15,
+        backgroundColor: colors.white
+    },
+    optionsContainer: {
+        paddingHorizontal: 25,
+        flexDirection: 'row',
+        flex: 1,
+        gap: 10
+    },
+    optionsColumn: {
+        flexDirection: 'column',
+        flex: 1,
+        gap: 10
+    },
+    option: {
+        backgroundColor: colors.white,
+        borderRadius: 10,
+        elevation: 10,
+        alignItems: 'center',
+        padding: 10,
+        justifyContent: 'center',
+        // height: 300,
+        // marginBottom: 15,
+        // flex: 1,
+    },
+    optionText: {
+        color: colors.primaryColor,
+        fontSize: responsiveFontSize(1.5),
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    optionsRow: {
+        flexDirection: 'row',
+        gap: 10,
+        flex: 1,
+        paddingHorizontal: 25,
+        marginTop: 10
     }
 });
 
