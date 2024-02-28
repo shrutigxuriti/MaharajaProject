@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from '../modules/auth/stack/AuthNavigator';
 import HomeStack from '../modules/home/stack/HomeStack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import BottomTab from './BottomTab';
 import { useAuth } from './AuthContext';
 import DrawerNavigator from './DrawerNavigator';
 
@@ -12,7 +11,7 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-      {isUserAuthenticated ? <HomeStack /> : <AuthNavigator />}
+      {isUserAuthenticated ? <DrawerNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

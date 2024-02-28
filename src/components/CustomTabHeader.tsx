@@ -14,6 +14,7 @@ const CustomTabHeader = ({ navigation, route }: { navigation: any, route: any })
     const handleMenuPress = () => {
         // navigation.openDrawer(); // Open the side menu bar
         console.log('Pressed')
+        navigation.toggleDrawer();
     };
 
     return (
