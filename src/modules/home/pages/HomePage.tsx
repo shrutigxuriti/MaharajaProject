@@ -23,7 +23,7 @@ const HomePage = ({ navigation }: NavigationProps) => {
             <View style={styles.detailsContainer}>
                 <Image style={{ height: 30, width: 30 }} source={require('../../../assets/usericon.png')} />
                 <View style={{ flexDirection: 'column', marginLeft: 10, gap: 2 }}>
-                    <Text style={{ color: colors.secondaryColor, fontSize: responsiveFontSize(1.5), fontWeight: 'bold' }}>TEST USER</Text>
+                    <Text style={{ color: colors.secondaryColor, fontSize: responsiveFontSize(1.7), fontWeight: 'bold' }}>TEST USER</Text>
                     <Text style={{ color: colors.secondaryColor, fontSize: responsiveFontSize(1.3) }}>USER ID 222</Text>
                 </View>
             </View>

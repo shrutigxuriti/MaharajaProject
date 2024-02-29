@@ -9,6 +9,9 @@ const Buttons = ({ label, onPress, disabled, variant, width }: ButtonsProps) => 
         if (variant === 'primary') {
             return [styles.primaryButton, { width }];
         }
+        if (variant === 'outlined') {
+            return [styles.outlinedButton, {width}];
+        }
     };
     return (
         <TouchableOpacity
@@ -49,7 +52,14 @@ const styles = StyleSheet.create({
         backgroundColor: colors.secondaryColor,
         borderRadius: 5,
         elevation: 5
-    }
+    },
+    outlinedButton: {
+        backgroundColor: colors.white,
+        borderRadius: 5,
+        elevation: 5,
+        borderColor: colors.secondaryColor,
+        borderWidth: 2
+    },
 });
 
 export default Buttons;

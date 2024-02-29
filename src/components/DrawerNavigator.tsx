@@ -13,6 +13,7 @@ import ProductsStack from '../modules/home/pages/options/products/stack/Products
 import LogoutConfirmationPopup from './LogoutConfirmationPopup';
 import { useAuth } from './AuthContext';
 import { useNavigation } from '@react-navigation/native';
+import PerformanceTracker from '../modules/auth/pages/PerformanceTracker';
 
 const Drawer = createDrawerNavigator();
 

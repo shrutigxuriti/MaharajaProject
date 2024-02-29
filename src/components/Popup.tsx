@@ -5,13 +5,13 @@ import { responsiveFontSize, responsiveHeight } from 'react-native-responsive-di
 import { useTranslation } from 'react-i18next';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-interface LogoutConfirmationPopupProps {
+interface PopupProps {
   isVisible: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  content: string;
 }
 
-const LogoutConfirmationPopup: React.FC<LogoutConfirmationPopupProps> = ({ isVisible, onClose, onConfirm }) => {
+const Popup: React.FC<PopupProps> = ({ isVisible, onClose, content }) => {
   const { t } = useTranslation();
 
   if (!isVisible) {
@@ -22,13 +22,10 @@ const LogoutConfirmationPopup: React.FC<LogoutConfirmationPopupProps> = ({ isVis
     <Modal visible={isVisible} animationType="slide">
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.popupText}>Are you sure you want to Logout?</Text>
-          {/* <Button title="Yes" onPress={onConfirm} color={colors.black} /> */}
-          <TouchableOpacity style={styles.okButton} onPress={onConfirm}>
-          <Ionicons name={'checkmark-circle'} size={30} color={colors.primaryColor} />
-          </TouchableOpacity>
+        <Ionicons name={'checkmark-circle-outline'} size={50} color={colors.primaryColor} />
+          <Text style={styles.popupText}>{content}</Text>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-          <Ionicons name={'close'} size={30} color={colors.primaryColor} />
+          <Ionicons name={'close-circle'} size={40} color={colors.primaryColor} />
           </TouchableOpacity>
         </View>
       </View>
@@ -46,7 +43,7 @@ const styles = StyleSheet.create({
   modalContent: {
     height: '30%',
     width: '80%',
-    padding: 30,
+    paddingHorizontal: 30,
     backgroundColor: colors.secondaryColor,
     borderRadius: 10,
     borderBottomRightRadius: 30,
@@ -57,15 +54,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 10,
     right: 10,
-    width: responsiveHeight(8),
-    height: responsiveHeight(8),
-  },
-  okButton: {
-    position: 'absolute',
-    bottom: 10,
-    right: 60,
-    width: responsiveHeight(8),
-    height: responsiveHeight(8),
   },
   closeButtonText: {
     color: 'blue',
@@ -77,6 +65,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     lineHeight: responsiveHeight(3),
     width: '70%',
+    marginTop: 20
   },
   button: {
     borderRadius: 10,
@@ -85,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LogoutConfirmationPopup;
+export default Popup;

@@ -5,6 +5,7 @@ import EnterNumber from '../pages/EnterNumber';
 import EnterOtp from '../pages/EnterOtp';
 import HomeStack from '../../home/stack/HomeStack';
 import RegisterUser from '../pages/RegisterUser';
+import PerformanceTracker from '../pages/PerformanceTracker';
 
 const AuthNavigator = () => {
   const Stack = createNativeStackNavigator();
@@ -14,6 +15,7 @@ const AuthNavigator = () => {
       <Stack.Screen name="enterNumber" component={EnterNumber} />
       <Stack.Screen name="enterOtp" component={EnterOtp} />
       <Stack.Screen name="registerUser" component={RegisterUser} />
+      <Stack.Screen name="PerformanceTracker" component={PerformanceTracker} />
     </Stack.Navigator>
   );
 };

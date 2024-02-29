@@ -4,13 +4,24 @@ import { responsiveFontSize, responsiveWidth } from "react-native-responsive-dim
 import { NavigationProps } from '../../../utils/interfaces';
 import Buttons from '../../../components/Buttons';
 import { useState } from 'react';
+import Popup from '../../../components/Popup';
 
 
 const EnterNumber = ({ navigation }: NavigationProps) => {
 
     const [number, setNumber] = useState('');
+    const [isLogoutPopupVisible, setLogoutPopupVisible] = useState(false);
+    const handleSubmit = () => {
+        setLogoutPopupVisible(true);
+    }
+    const hideLogoutPopup = () => {
+        setLogoutPopupVisible(false);
+        navigation.navigate('enterOtp', { usernumber: number })
+    }
     return (
         <View style={styles.mainWrapper}>
+                  <Popup isVisible={isLogoutPopupVisible} onClose={hideLogoutPopup} content={'OTP Sent Successfully!'} />
+
             <View>
                 <Image style={styles.maharajaIcon} source={require('../../../assets/Logo.png')} resizeMode='contain' />
             </View>
@@ -33,7 +44,7 @@ const EnterNumber = ({ navigation }: NavigationProps) => {
                 </View>
                 <Buttons
                     label={'Get OTP'}
-                    onPress={() => navigation.navigate('enterOtp', { usernumber: number })}
+                    onPress={handleSubmit}
                     disabled={false}
                     variant={'primary'}
                     width={100}
